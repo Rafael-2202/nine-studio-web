@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Nine Studio | Ingeniería de Software</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], },
+                    colors: { nineBlack: '#000000', nineGray: '#111111' },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* FONDO BASE NEGRO */
+        body { background-color: #000000; color: white; overflow-x: hidden; margin: 0; }
+        
+        /* CANVAS DEL COSMOS (WARP SPEED) */
+        #warp-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Detrás de todo */
+            pointer-events: none;
+            background: black;
+        }
+        
+        /* ESTILOS PREMIUM */
+        .btn-glow:hover { box-shadow: 0 0 40px rgba(255, 255, 255, 0.4); transform: scale(1.02); transition: all 0.3s ease; }
+        
+        /* Tarjetas de cristal espacial */
+        .glass-card {
+            background-color: rgba(10, 10, 10, 0.7); /* Oscuro pero transparente */
+            backdrop-filter: blur(10px); /* Desenfoque elegante */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            background-color: rgba(20, 20, 20, 0.9);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+        }
+        
+        /* ANIMACIONES DE ENTRADA */
+        .fade-in { opacity: 0; animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform: translateY(40px); }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        .logo-enter { opacity: 0; animation: fadeInLogo 2s ease-out forwards; animation-delay: 0.3s; }
+        @keyframes fadeInLogo { to { opacity: 1; } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="warp-canvas"></canvas>
+
+    <nav class="relative z-50 flex justify-between items-center px-6 py-6 md:px-12 fade-in" style="animation-delay: 0.1s;">
+        <div class="text-2xl font-black tracking-tighter mix-blend-difference">NINE STUDIO.</div>
+        <div class="hidden md:flex space-x-8 text-sm font-bold tracking-widest text-gray-400 uppercase">
+            <a href="#servicios" class="hover:text-white transition">Servicios</a>
+            <a href="#proceso" class="hover:text-white transition">Método</a>
+            <a href="#proyectos" class="hover:text-white transition">Proyectos</a>
+        </div>
+        <a href="#contacto" class="text-sm font-bold tracking-widest text-white border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase backdrop-blur-sm">Contacto</a>
+    </nav>
+
+    <header class="relative z-10 min-h-screen flex flex-col md:flex-row items-center px-6 md:px-12 overflow-hidden border-b border-white/5">
+        <div class="w-full md:w-1/2 flex flex-col justify-center space-y-6 pt-20 md:pt-0 z-20">
+            <p class="text-gray-500 tracking-[0.3em] text-xs font-bold fade-in" style="animation-delay: 0.2s;">EST. 2024 — CIUDAD DE MÉXICO</p>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter fade-in" style="animation-delay: 0.4s;">
+                SOFTWARE<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">ENGINEERING</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-lg font-light fade-in" style="animation-delay: 0.6s;">
+                Transformamos negocios tradicionales en potencias digitales. Diseño brutalista, código limpio y estrategias de alto impacto.
+            </p>
+            <div class="pt-6 fade-in" style="animation-delay: 0.8s;">
+                <a href="#contacto" class="btn-glow inline-block bg-white text-black font-bold py-4 px-10 rounded-full tracking-wide">INICIAR PROYECTO</a>
+            </div>
+        </div>
+
+        <div class="absolute md:relative right-[-15%] bottom-[-5%] md:bottom-auto w-[120%] md:w-3/5 h-[60vh] md:h-screen flex items-end md:items-center justify-end z-0 pointer-events-none logo-enter">
+        <svg class="w-full h-full md:scale-150 origin-bottom-right" viewBox="0 0 500 500" width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Frame 1">
+            <path id="logo-nine" d="M173.96 339.909V369H167.994L156.418 352.21H156.233V369H149.202V339.909H155.253L166.702 356.67H166.943V339.909H173.96ZM185.413 339.909V369H178.381V339.909H185.413ZM214.585 339.909V369H208.619L197.043 352.21H196.858V369H189.827V339.909H195.878L207.327 356.67H207.568V339.909H214.585ZM219.006 369V339.909H239.29V345.619H226.038V351.585H238.254V357.31H226.038V363.29H239.29V369H219.006Z" fill="url(#paint0_linear_1_2)"/>
+            <path id="logo-studio" d="M274.679 382.906C274.546 381.666 273.988 380.7 273.003 380.009C272.027 379.317 270.759 378.972 269.196 378.972C268.098 378.972 267.155 379.137 266.369 379.469C265.583 379.8 264.982 380.25 264.565 380.818C264.149 381.386 263.936 382.035 263.926 382.764C263.926 383.37 264.063 383.896 264.338 384.341C264.622 384.786 265.006 385.165 265.489 385.477C265.972 385.78 266.507 386.036 267.094 386.244C267.681 386.453 268.273 386.628 268.869 386.77L271.597 387.452C272.695 387.707 273.751 388.053 274.764 388.489C275.787 388.924 276.701 389.473 277.506 390.136C278.32 390.799 278.964 391.599 279.438 392.537C279.911 393.474 280.148 394.573 280.148 395.832C280.148 397.537 279.712 399.038 278.841 400.335C277.97 401.623 276.71 402.632 275.062 403.361C273.424 404.08 271.44 404.44 269.111 404.44C266.848 404.44 264.883 404.09 263.216 403.389C261.559 402.688 260.261 401.666 259.324 400.321C258.396 398.976 257.894 397.338 257.818 395.406H263.003C263.079 396.42 263.391 397.262 263.94 397.935C264.49 398.607 265.205 399.109 266.085 399.44C266.975 399.772 267.97 399.938 269.068 399.938C270.214 399.938 271.218 399.767 272.08 399.426C272.951 399.076 273.633 398.593 274.125 397.977C274.617 397.352 274.868 396.623 274.878 395.79C274.868 395.032 274.646 394.407 274.21 393.915C273.775 393.413 273.164 392.996 272.378 392.665C271.601 392.324 270.692 392.021 269.651 391.756L266.341 390.903C263.945 390.288 262.051 389.355 260.659 388.105C259.277 386.846 258.585 385.174 258.585 383.091C258.585 381.377 259.049 379.876 259.977 378.588C260.915 377.3 262.188 376.301 263.798 375.591C265.408 374.871 267.231 374.511 269.267 374.511C271.331 374.511 273.14 374.871 274.693 375.591C276.256 376.301 277.482 377.291 278.372 378.56C279.262 379.819 279.722 381.268 279.75 382.906H274.679ZM283.567 379.327V374.909H306.778V379.327H297.786V404H292.559V379.327H283.567ZM329.59 374.909H334.86V393.915C334.86 395.998 334.368 397.83 333.383 399.412C332.407 400.993 331.034 402.229 329.263 403.119C327.493 404 325.424 404.44 323.056 404.44C320.679 404.44 318.605 404 316.835 403.119C315.064 402.229 313.691 400.993 312.715 399.412C311.74 397.83 311.252 395.998 311.252 393.915V374.909H316.522V393.474C316.522 394.687 316.787 395.766 317.317 396.713C317.857 397.66 318.615 398.403 319.59 398.943C320.566 399.473 321.721 399.739 323.056 399.739C324.391 399.739 325.547 399.473 326.522 398.943C327.507 398.403 328.264 397.66 328.795 396.713C329.325 395.766 329.59 394.687 329.59 393.474V374.909ZM350.446 404H340.588V374.909H350.645C353.533 374.909 356.014 375.491 358.088 376.656C360.171 377.812 361.772 379.473 362.889 381.642C364.007 383.811 364.565 386.405 364.565 389.426C364.565 392.456 364.002 395.061 362.875 397.239C361.758 399.417 360.143 401.088 358.031 402.253C355.929 403.418 353.401 404 350.446 404ZM345.858 399.44H350.19C352.217 399.44 353.907 399.071 355.261 398.332C356.616 397.584 357.634 396.472 358.315 394.994C358.997 393.508 359.338 391.652 359.338 389.426C359.338 387.201 358.997 385.354 358.315 383.886C357.634 382.409 356.625 381.306 355.29 380.577C353.964 379.838 352.316 379.469 350.347 379.469H345.858V399.44ZM374.842 374.909V404H369.572V374.909H374.842ZM406.543 389.455C406.543 392.589 405.956 395.274 404.782 397.509C403.617 399.734 402.026 401.438 400.009 402.622C398.002 403.806 395.724 404.398 393.177 404.398C390.629 404.398 388.347 403.806 386.33 402.622C384.323 401.429 382.732 399.72 381.558 397.494C380.393 395.259 379.81 392.58 379.81 389.455C379.81 386.32 380.393 383.64 381.558 381.415C382.732 379.18 384.323 377.471 386.33 376.287C388.347 375.103 390.629 374.511 393.177 374.511C395.724 374.511 398.002 375.103 400.009 376.287C402.026 377.471 403.617 379.18 404.782 381.415C405.956 383.64 406.543 386.32 406.543 389.455ZM401.245 389.455C401.245 387.248 400.899 385.387 400.208 383.872C399.526 382.348 398.579 381.197 397.367 380.42C396.155 379.634 394.758 379.241 393.177 379.241C391.595 379.241 390.199 379.634 388.987 380.42C387.774 381.197 386.823 382.348 386.131 383.872C385.45 385.387 385.109 387.248 385.109 389.455C385.109 391.661 385.45 393.527 386.131 395.051C386.823 396.566 387.774 397.717 388.987 398.503C390.199 399.279 391.595 399.668 393.177 399.668C394.758 399.668 396.155 399.279 397.367 398.503C398.579 397.717 399.526 396.566 400.208 395.051C400.899 393.527 401.245 391.661 401.245 389.455Z" fill="url(#paint1_linear_1_2)"/>
+            <g id="logo-numero" filter="url(#filter0_d_1_2)">
+            <path d="M251.693 138.252C264.551 138.252 276.718 140.897 288.192 146.187C299.504 151.558 308.66 159.37 315.658 169.624C322.657 179.878 326.156 192.004 326.156 206.001C326.156 215.929 323.593 225.98 318.466 236.152C315.048 242.826 310.775 249.539 305.648 256.294C300.603 263.049 294.459 270.373 287.216 278.267C279.973 286.16 271.306 295.153 261.215 305.244L196.517 305.004L266.513 231.208C272.884 226.003 277 217.769 277 208.5C277 192.76 265.136 180 250.5 180C235.864 180 224 192.76 224 208.5C224 223.858 235.296 236.376 249.44 236.975L222.828 265.032C215.518 264.019 208.741 261.839 202.499 258.491C193.466 253.69 186.345 247.057 181.137 238.594C176.01 230.049 173.446 220.446 173.446 209.785C173.446 195.706 176.864 183.255 183.7 172.432C190.536 161.527 199.854 153.104 211.654 147.163C223.536 141.222 236.882 138.252 251.693 138.252Z" fill="url(#paint2_linear_1_2)"/>
+            </g>
+            <rect id="logo-palito" x="247" y="340" width="6" height="64" fill="url(#paint3_linear_1_2)"/>
+            </g>
+            <defs>
+            <filter id="filter0_d_1_2" x="169.446" y="138.252" width="160.71" height="174.992" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+            </filter>
+            <linearGradient id="paint0_linear_1_2" x1="194.5" y1="330" x2="194.5" y2="378" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#B3B3B3"/>
+            <stop offset="0.5" stop-color="white"/>
+            <stop offset="1" stop-color="#4D4D4D"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_1_2" x1="256" y1="389" x2="409" y2="389" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#B3B3B3"/>
+            <stop offset="0.5" stop-color="white"/>
+            <stop offset="1" stop-color="#4D4D4D"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear_1_2" x1="250" y1="-9.64924e-06" x2="250" y2="452" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#B3B3B3"/>
+            <stop offset="0.5" stop-color="white"/>
+            <stop offset="1" stop-color="#4D4D4D"/>
+            </linearGradient>
+            <linearGradient id="paint3_linear_1_2" x1="250" y1="340" x2="250" y2="404" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#B3B3B3"/>
+            <stop offset="0.5" stop-color="white"/>
+            <stop offset="1" stop-color="#4D4D4D"/>
+            </linearGradient>
+            </defs>
+        </svg>
+        </div>
+    </header>
+
+    <section class="relative z-20 py-32 px-6 md:px-12">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/80 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <span class="text-gray-500 tracking-widest uppercase text-sm font-bold block mb-8">01. Nuestra Esencia</span>
+            <p class="text-3xl md:text-5xl lg:text-6xl font-light leading-tight text-gray-300">
+                En Nine Studio, <span class="text-white font-bold">fusionamos código robusto con estética impecable.</span> Cada línea es arquitectura, cada diseño es funcionalidad. No solo hacemos que funcione; hacemos que inspire.
+            </p>
+        </div>
+    </section>
+
+    <section id="servicios" class="relative z-20 py-20 px-6 md:px-12">
+        <span class="text-gray-500 tracking-widest uppercase text-sm font-bold block mb-12">02. Servicios</span>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card p-12 group rounded-xl">
+                <div class="text-4xl mb-6 text-gray-500 group-hover:text-white transition">{ }</div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Desarrollo Web</h3>
+                <p class="text-gray-400">Aplicaciones web modernas, escalables y rápidas. Desde landing pages de alto impacto hasta plataformas complejas.</p>
+            </div>
+            <div class="glass-card p-12 group rounded-xl">
+                <div class="text-4xl mb-6 text-gray-500 group-hover:text-white transition">📱</div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Aplicaciones Móviles</h3>
+                <p class="text-gray-400">Experiencias nativas e híbridas que conectan con tus usuarios en iOS y Android.</p>
+            </div>
+            <div class="glass-card p-12 group rounded-xl">
+                <div class="text-4xl mb-6 text-gray-500 group-hover:text-white transition">⚙️</div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Consultoría Técnica</h3>
+                <p class="text-gray-400">Auditoría de código, arquitectura de software y estrategias para escalar tu negocio digital.</p>
+            </div>
+            <div class="glass-card p-12 group rounded-xl">
+                <div class="text-4xl mb-6 text-gray-500 group-hover:text-white transition">✦</div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Identidad Digital</h3>
+                <p class="text-gray-400">Diseño UI/UX que no solo se ve bien, sino que convierte visitantes en clientes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="proceso" class="relative z-20 py-24 px-6 md:px-12">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-[2px] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <span class="text-gray-500 tracking-widest uppercase text-sm font-bold block mb-16">03. El Método Nine</span>
+            
+            <div class="space-y-16">
+                <div class="flex flex-col md:flex-row md:items-center border-b border-white/10 pb-12">
+                    <div class="text-6xl md:text-8xl font-black text-white/20 mr-12">01</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Briefing & Estrategia</h3>
+                        <p class="text-gray-400 max-w-xl">Inmersión profunda en tu visión. Definimos el alcance con precisión quirúrgica.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center border-b border-white/10 pb-12">
+                    <div class="text-6xl md:text-8xl font-black text-white/20 mr-12">02</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Arquitectura & Diseño</h3>
+                        <p class="text-gray-400 max-w-xl">Diseñamos la estructura técnica y visual antes de escribir una sola línea de código.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center border-b border-white/10 pb-12">
+                    <div class="text-6xl md:text-8xl font-black text-white/20 mr-12">03</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Desarrollo Ágil</h3>
+                        <p class="text-gray-400 max-w-xl">Sprints iterativos. Ves tu proyecto cobrar vida semana a semana.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center pb-12">
+                    <div class="text-6xl md:text-8xl font-black text-white/20 mr-12">04</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Lanzamiento</h3>
+                        <p class="text-gray-400 max-w-xl">Testing exhaustivo y despliegue a producción. Tu idea, al mundo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos" class="relative z-20 py-24 px-6 md:px-12">
+        <span class="text-gray-500 tracking-widest uppercase text-sm font-bold block mb-12">04. Proyectos</span>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card group relative aspect-video overflow-hidden cursor-pointer rounded-xl">
+                <div class="absolute inset-0 flex flex-col items-center justify-center transition duration-500">
+                    <span class="text-neutral-500 font-black text-3xl group-hover:text-white group-hover:scale-110 transition duration-500 tracking-tighter">E-COMMERCE</span>
+                    <span class="text-neutral-600 text-sm mt-2 opacity-0 group-hover:opacity-100 transition duration-500">PLATFORM V.1</span>
+                </div>
+            </div>
+            <div class="glass-card group relative aspect-video overflow-hidden cursor-pointer rounded-xl">
+                <div class="absolute inset-0 flex flex-col items-center justify-center transition duration-500">
+                    <span class="text-neutral-500 font-black text-3xl group-hover:text-white group-hover:scale-110 transition duration-500 tracking-tighter">SAAS</span>
+                    <span class="text-neutral-600 text-sm mt-2 opacity-0 group-hover:opacity-100 transition duration-500">DASHBOARD UI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="relative z-20 py-24 px-6 md:px-12">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto text-center mb-16 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black mb-6">Hablemos de Negocios</h2>
+            <p class="text-gray-400 text-xl">¿Tienes una idea ambiciosa? Nosotros tenemos la ingeniería para construirla.</p>
+        </div>
+        <form action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST" class="max-w-xl mx-auto space-y-6 relative z-10">
+            <input type="text" name="nombre" placeholder="Tu Nombre / Empresa" required class="w-full bg-white/5 border border-white/10 p-5 text-white focus:border-white focus:outline-none rounded-lg text-lg backdrop-blur-sm placeholder-gray-500">
+            <input type="email" name="email" placeholder="Tu Correo Electrónico" required class="w-full bg-white/5 border border-white/10 p-5 text-white focus:border-white focus:outline-none rounded-lg text-lg backdrop-blur-sm placeholder-gray-500">
+            <textarea name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto..." required class="w-full bg-white/5 border border-white/10 p-5 text-white focus:border-white focus:outline-none rounded-lg text-lg backdrop-blur-sm placeholder-gray-500"></textarea>
+            <button type="submit" class="w-full btn-glow bg-white text-black font-black py-5 rounded-lg tracking-widest uppercase hover:bg-gray-200 transition">Enviar Solicitud</button>
+        </form>
+    </section>
+
+    <footer class="py-12 text-center relative z-20 border-t border-white/10 bg-black/60 backdrop-blur-lg">
+        <div class="text-2xl font-black tracking-tighter mb-4 text-white mix-blend-overlay">NINE STUDIO.</div>
+        <p class="text-neutral-500 text-sm mb-8">&copy; 2025 Nine Studio. Ingeniería de Software con Precisión de Diseño.</p>
+        <div class="flex justify-center space-x-6 text-neutral-400 text-xs tracking-widest uppercase">
+            <a href="#" class="hover:text-white transition">Instagram</a>
+            <a href="#" class="hover:text-white transition">LinkedIn</a>
+            <a href="#" class="hover:text-white transition">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('warp-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let stars = [];
+        const numStars = 800; 
+        const speed = 4; 
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            ctx.translate(width / 2, height / 2);
+        }
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = (Math.random() - 0.5) * width * 2;
+                this.y = (Math.random() - 0.5) * height * 2;
+                this.z = Math.random() * width; 
+                this.pz = this.z; 
+            }
+
+            update() {
+                this.z = this.z - speed;
+                if (this.z < 1) {
+                    this.reset();
+                    this.z = width;
+                    this.pz = this.z;
+                }
+            }
+
+            draw() {
+                let sx = (this.x / this.z) * width;
+                let sy = (this.y / this.z) * height;
+                let px = (this.x / this.pz) * width;
+                let py = (this.y / this.pz) * height;
+                this.pz = this.z;
+
+                let opacity = (1 - this.z / width) * 1.5; 
+                if(opacity > 1) opacity = 1;
+
+                ctx.beginPath();
+                ctx.moveTo(sx, sy);
+                ctx.lineTo(px, py);
+                ctx.lineWidth = (1 - this.z / width) * 3; 
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.stroke();
+            }
+        }
+
+        function init() {
+            resize();
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        function animate() {
+            // Mantenemos el rastro leve para velocidad
+            ctx.save();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.8)"; // Un poco de rastro
+            ctx.fillRect(0, 0, width, height);
+            ctx.restore();
+
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].update();
+                stars[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+        animate();
+    </script>
+
+</body>
+</html>
